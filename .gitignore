@@ -1,0 +1,22 @@
+# Gradle
+.gradle/
+build/
+*.jar
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Run
+run/
+gradle/wrapper/gradle-8.10.2-bin.zip

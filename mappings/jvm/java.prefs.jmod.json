@@ -1,0 +1,2345 @@
+{
+  "md5": "4e92a876aa200ad28596a8ea027390fe",
+  "sha2": "cb5656d4b4ca07ef0eb027c9ab8cf5735836fedb",
+  "sha256": "73f3a08f868e04b34f022c2cfd99f85910661e84e835d3f77c1741c2cbcd3217",
+  "contents": {
+    "classes": {
+      "classes/java/util/prefs/FileSystemPreferences$4$1.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$4$1",
+        "super": "java/lang/Thread",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/FileSystemPreferences$4;Ljava/lang/ThreadGroup;Ljava/lang/Runnable;Ljava/lang/String;JZ)V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()V"
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/FileSystemPreferences$4.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$4",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "()V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()Ljava/lang/Void;"
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;"
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/FileSystemPreferences$11.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$11",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/FileSystemPreferences;Ljava/lang/Long;)V",
+            "sig": "()V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()Ljava/lang/Void;"
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 4112,
+            "nme": "val$newModTime",
+            "dsc": "Ljava/lang/Long;"
+          },
+          {
+            "acc": 4112,
+            "nme": "this$0",
+            "dsc": "Ljava/util/prefs/FileSystemPreferences;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/AbstractPreferences$EventDispatchThread.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/AbstractPreferences$EventDispatchThread",
+        "super": "java/lang/Thread",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 2,
+            "dsc": "()V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()V"
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/FileSystemPreferences$Remove.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$Remove",
+        "super": "java/util/prefs/FileSystemPreferences$Change",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/FileSystemPreferences;Ljava/lang/String;)V"
+          },
+          {
+            "nme": "replay",
+            "acc": 0,
+            "dsc": "()V"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 0,
+            "nme": "key",
+            "dsc": "Ljava/lang/String;"
+          },
+          {
+            "acc": 4112,
+            "nme": "this$0",
+            "dsc": "Ljava/util/prefs/FileSystemPreferences;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/FileSystemPreferences$6.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$6",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/FileSystemPreferences;)V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()Ljava/lang/Void;",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;",
+            "exs": [
+              "java/lang/Exception"
+            ]
+          }
+        ],
+        "flds": [
+          {
+            "acc": 4112,
+            "nme": "this$0",
+            "dsc": "Ljava/util/prefs/FileSystemPreferences;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/AbstractPreferences$1.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/AbstractPreferences$1",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/AbstractPreferences;)V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()Ljava/lang/Boolean;"
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 4112,
+            "nme": "this$0",
+            "dsc": "Ljava/util/prefs/AbstractPreferences;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/AbstractPreferences.class": {
+        "ver": 65,
+        "acc": 1057,
+        "nme": "java/util/prefs/AbstractPreferences",
+        "super": "java/util/prefs/Preferences",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 4,
+            "dsc": "(Ljava/util/prefs/AbstractPreferences;Ljava/lang/String;)V"
+          },
+          {
+            "nme": "put",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;Ljava/lang/String;)V"
+          },
+          {
+            "nme": "get",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+          },
+          {
+            "nme": "remove",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;)V"
+          },
+          {
+            "nme": "clear",
+            "acc": 1,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "putInt",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;I)V"
+          },
+          {
+            "nme": "getInt",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;I)I"
+          },
+          {
+            "nme": "putLong",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;J)V"
+          },
+          {
+            "nme": "getLong",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;J)J"
+          },
+          {
+            "nme": "putBoolean",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;Z)V"
+          },
+          {
+            "nme": "getBoolean",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;Z)Z"
+          },
+          {
+            "nme": "putFloat",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;F)V"
+          },
+          {
+            "nme": "getFloat",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;F)F"
+          },
+          {
+            "nme": "putDouble",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;D)V"
+          },
+          {
+            "nme": "getDouble",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;D)D"
+          },
+          {
+            "nme": "putByteArray",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;[B)V"
+          },
+          {
+            "nme": "getByteArray",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;[B)[B"
+          },
+          {
+            "nme": "keys",
+            "acc": 1,
+            "dsc": "()[Ljava/lang/String;",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "childrenNames",
+            "acc": 1,
+            "dsc": "()[Ljava/lang/String;",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "cachedChildren",
+            "acc": 20,
+            "dsc": "()[Ljava/util/prefs/AbstractPreferences;"
+          },
+          {
+            "nme": "parent",
+            "acc": 1,
+            "dsc": "()Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "node",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;)Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "node",
+            "acc": 2,
+            "dsc": "(Ljava/util/StringTokenizer;)Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "nodeExists",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;)Z",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "nodeExists",
+            "acc": 2,
+            "dsc": "(Ljava/util/StringTokenizer;)Z",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "removeNode",
+            "acc": 1,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "removeNode2",
+            "acc": 2,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "name",
+            "acc": 1,
+            "dsc": "()Ljava/lang/String;"
+          },
+          {
+            "nme": "absolutePath",
+            "acc": 1,
+            "dsc": "()Ljava/lang/String;"
+          },
+          {
+            "nme": "isUserNode",
+            "acc": 1,
+            "dsc": "()Z"
+          },
+          {
+            "nme": "addPreferenceChangeListener",
+            "acc": 1,
+            "dsc": "(Ljava/util/prefs/PreferenceChangeListener;)V"
+          },
+          {
+            "nme": "removePreferenceChangeListener",
+            "acc": 1,
+            "dsc": "(Ljava/util/prefs/PreferenceChangeListener;)V"
+          },
+          {
+            "nme": "addNodeChangeListener",
+            "acc": 1,
+            "dsc": "(Ljava/util/prefs/NodeChangeListener;)V"
+          },
+          {
+            "nme": "removeNodeChangeListener",
+            "acc": 1,
+            "dsc": "(Ljava/util/prefs/NodeChangeListener;)V"
+          },
+          {
+            "nme": "putSpi",
+            "acc": 1028,
+            "dsc": "(Ljava/lang/String;Ljava/lang/String;)V"
+          },
+          {
+            "nme": "getSpi",
+            "acc": 1028,
+            "dsc": "(Ljava/lang/String;)Ljava/lang/String;"
+          },
+          {
+            "nme": "removeSpi",
+            "acc": 1028,
+            "dsc": "(Ljava/lang/String;)V"
+          },
+          {
+            "nme": "removeNodeSpi",
+            "acc": 1028,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "keysSpi",
+            "acc": 1028,
+            "dsc": "()[Ljava/lang/String;",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "childrenNamesSpi",
+            "acc": 1028,
+            "dsc": "()[Ljava/lang/String;",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "getChild",
+            "acc": 4,
+            "dsc": "(Ljava/lang/String;)Ljava/util/prefs/AbstractPreferences;",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "childSpi",
+            "acc": 1028,
+            "dsc": "(Ljava/lang/String;)Ljava/util/prefs/AbstractPreferences;"
+          },
+          {
+            "nme": "toString",
+            "acc": 1,
+            "dsc": "()Ljava/lang/String;"
+          },
+          {
+            "nme": "sync",
+            "acc": 1,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "sync2",
+            "acc": 2,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "syncSpi",
+            "acc": 1028,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "flush",
+            "acc": 1,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "flush2",
+            "acc": 2,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "flushSpi",
+            "acc": 1028,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "isRemoved",
+            "acc": 4,
+            "dsc": "()Z"
+          },
+          {
+            "nme": "startEventDispatchThreadIfNecessary",
+            "acc": 42,
+            "dsc": "()V"
+          },
+          {
+            "nme": "prefListeners",
+            "acc": 0,
+            "dsc": "()[Ljava/util/prefs/PreferenceChangeListener;"
+          },
+          {
+            "nme": "nodeListeners",
+            "acc": 0,
+            "dsc": "()[Ljava/util/prefs/NodeChangeListener;"
+          },
+          {
+            "nme": "enqueuePreferenceChangeEvent",
+            "acc": 2,
+            "dsc": "(Ljava/lang/String;Ljava/lang/String;)V"
+          },
+          {
+            "nme": "enqueueNodeAddedEvent",
+            "acc": 2,
+            "dsc": "(Ljava/util/prefs/Preferences;)V"
+          },
+          {
+            "nme": "enqueueNodeRemovedEvent",
+            "acc": 2,
+            "dsc": "(Ljava/util/prefs/Preferences;)V"
+          },
+          {
+            "nme": "exportNode",
+            "acc": 1,
+            "dsc": "(Ljava/io/OutputStream;)V",
+            "exs": [
+              "java/io/IOException",
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "exportSubtree",
+            "acc": 1,
+            "dsc": "(Ljava/io/OutputStream;)V",
+            "exs": [
+              "java/io/IOException",
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "<clinit>",
+            "acc": 8,
+            "dsc": "()V"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 24,
+            "nme": "CODE_POINT_U0000",
+            "dsc": "I",
+            "val": 0
+          },
+          {
+            "acc": 18,
+            "nme": "name",
+            "dsc": "Ljava/lang/String;"
+          },
+          {
+            "acc": 18,
+            "nme": "absolutePath",
+            "dsc": "Ljava/lang/String;"
+          },
+          {
+            "acc": 16,
+            "nme": "parent",
+            "dsc": "Ljava/util/prefs/AbstractPreferences;"
+          },
+          {
+            "acc": 18,
+            "nme": "root",
+            "dsc": "Ljava/util/prefs/AbstractPreferences;"
+          },
+          {
+            "acc": 4,
+            "nme": "newNode",
+            "dsc": "Z"
+          },
+          {
+            "acc": 2,
+            "nme": "kidCache",
+            "dsc": "Ljava/util/Map;",
+            "sig": "Ljava/util/Map<Ljava/lang/String;Ljava/util/prefs/AbstractPreferences;>;"
+          },
+          {
+            "acc": 2,
+            "nme": "removed",
+            "dsc": "Z"
+          },
+          {
+            "acc": 2,
+            "nme": "prefListeners",
+            "dsc": "[Ljava/util/prefs/PreferenceChangeListener;"
+          },
+          {
+            "acc": 2,
+            "nme": "nodeListeners",
+            "dsc": "[Ljava/util/prefs/NodeChangeListener;"
+          },
+          {
+            "acc": 20,
+            "nme": "lock",
+            "dsc": "Ljava/lang/Object;"
+          },
+          {
+            "acc": 26,
+            "nme": "EMPTY_STRING_ARRAY",
+            "dsc": "[Ljava/lang/String;"
+          },
+          {
+            "acc": 26,
+            "nme": "EMPTY_ABSTRACT_PREFS_ARRAY",
+            "dsc": "[Ljava/util/prefs/AbstractPreferences;"
+          },
+          {
+            "acc": 26,
+            "nme": "eventQueue",
+            "dsc": "Ljava/util/List;",
+            "sig": "Ljava/util/List<Ljava/util/EventObject;>;"
+          },
+          {
+            "acc": 10,
+            "nme": "eventDispatchThread",
+            "dsc": "Ljava/lang/Thread;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/BackingStoreException.class": {
+        "ver": 65,
+        "acc": 33,
+        "nme": "java/util/prefs/BackingStoreException",
+        "super": "java/lang/Exception",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;)V"
+          },
+          {
+            "nme": "<init>",
+            "acc": 1,
+            "dsc": "(Ljava/lang/Throwable;)V"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 26,
+            "nme": "serialVersionUID",
+            "dsc": "J",
+            "val": 859796500401108469
+          }
+        ]
+      },
+      "classes/java/util/prefs/FileSystemPreferences$2.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$2",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "()V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()Ljava/lang/Void;"
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;"
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/NodeChangeEvent.class": {
+        "ver": 65,
+        "acc": 33,
+        "nme": "java/util/prefs/NodeChangeEvent",
+        "super": "java/util/EventObject",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 1,
+            "dsc": "(Ljava/util/prefs/Preferences;Ljava/util/prefs/Preferences;)V"
+          },
+          {
+            "nme": "getParent",
+            "acc": 1,
+            "dsc": "()Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "getChild",
+            "acc": 1,
+            "dsc": "()Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "writeObject",
+            "acc": 2,
+            "dsc": "(Ljava/io/ObjectOutputStream;)V",
+            "exs": [
+              "java/io/NotSerializableException"
+            ]
+          },
+          {
+            "nme": "readObject",
+            "acc": 2,
+            "dsc": "(Ljava/io/ObjectInputStream;)V",
+            "exs": [
+              "java/io/NotSerializableException"
+            ]
+          }
+        ],
+        "flds": [
+          {
+            "acc": 130,
+            "nme": "child",
+            "dsc": "Ljava/util/prefs/Preferences;"
+          },
+          {
+            "acc": 26,
+            "nme": "serialVersionUID",
+            "dsc": "J",
+            "val": 8068949086596572957
+          }
+        ]
+      },
+      "classes/java/util/prefs/InvalidPreferencesFormatException.class": {
+        "ver": 65,
+        "acc": 33,
+        "nme": "java/util/prefs/InvalidPreferencesFormatException",
+        "super": "java/lang/Exception",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 1,
+            "dsc": "(Ljava/lang/Throwable;)V"
+          },
+          {
+            "nme": "<init>",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;)V"
+          },
+          {
+            "nme": "<init>",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;Ljava/lang/Throwable;)V"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 26,
+            "nme": "serialVersionUID",
+            "dsc": "J",
+            "val": -791715184232119669
+          }
+        ]
+      },
+      "classes/java/util/prefs/PreferencesFactory.class": {
+        "ver": 65,
+        "acc": 1537,
+        "nme": "java/util/prefs/PreferencesFactory",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "systemRoot",
+            "acc": 1025,
+            "dsc": "()Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "userRoot",
+            "acc": 1025,
+            "dsc": "()Ljava/util/prefs/Preferences;"
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/FileSystemPreferences$Change.class": {
+        "ver": 65,
+        "acc": 1056,
+        "nme": "java/util/prefs/FileSystemPreferences$Change",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 2,
+            "dsc": "()V"
+          },
+          {
+            "nme": "replay",
+            "acc": 1024,
+            "dsc": "()V"
+          }
+        ],
+        "flds": []
+      },
+      "classes/module-info.class": {
+        "ver": 65,
+        "acc": 32768,
+        "nme": "module-info",
+        "mthds": [],
+        "flds": []
+      },
+      "classes/java/util/prefs/FileSystemPreferences$8.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$8",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/FileSystemPreferences;)V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()[Ljava/lang/String;"
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 4112,
+            "nme": "this$0",
+            "dsc": "Ljava/util/prefs/FileSystemPreferences;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/Preferences$1.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/Preferences$1",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "()V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()Ljava/lang/String;"
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;"
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/AbstractPreferences$NodeAddedEvent.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/AbstractPreferences$NodeAddedEvent",
+        "super": "java/util/prefs/NodeChangeEvent",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/Preferences;Ljava/util/prefs/Preferences;)V"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 26,
+            "nme": "serialVersionUID",
+            "dsc": "J",
+            "val": -6743557530157328528
+          }
+        ]
+      },
+      "classes/java/util/prefs/NodeChangeListener.class": {
+        "ver": 65,
+        "acc": 1537,
+        "nme": "java/util/prefs/NodeChangeListener",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "childAdded",
+            "acc": 1025,
+            "dsc": "(Ljava/util/prefs/NodeChangeEvent;)V"
+          },
+          {
+            "nme": "childRemoved",
+            "acc": 1025,
+            "dsc": "(Ljava/util/prefs/NodeChangeEvent;)V"
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/Preferences$3.class": {
+        "ver": 65,
+        "acc": 4128,
+        "nme": "java/util/prefs/Preferences$3",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<clinit>",
+            "acc": 8,
+            "dsc": "()V"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 4120,
+            "nme": "$SwitchMap$jdk$internal$util$OperatingSystem",
+            "dsc": "[I"
+          }
+        ]
+      },
+      "classes/java/util/prefs/XmlSupport.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/XmlSupport",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "()V"
+          },
+          {
+            "nme": "export",
+            "acc": 8,
+            "dsc": "(Ljava/io/OutputStream;Ljava/util/prefs/Preferences;Z)V",
+            "exs": [
+              "java/io/IOException",
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "putPreferencesInXml",
+            "acc": 10,
+            "dsc": "(Lorg/w3c/dom/Element;Lorg/w3c/dom/Document;Ljava/util/prefs/Preferences;Z)V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "importPreferences",
+            "acc": 8,
+            "dsc": "(Ljava/io/InputStream;)V",
+            "exs": [
+              "java/io/IOException",
+              "java/util/prefs/InvalidPreferencesFormatException"
+            ]
+          },
+          {
+            "nme": "createPrefsDoc",
+            "acc": 10,
+            "dsc": "(Ljava/lang/String;)Lorg/w3c/dom/Document;"
+          },
+          {
+            "nme": "loadPrefsDoc",
+            "acc": 10,
+            "dsc": "(Ljava/io/InputStream;)Lorg/w3c/dom/Document;",
+            "exs": [
+              "org/xml/sax/SAXException",
+              "java/io/IOException"
+            ]
+          },
+          {
+            "nme": "writeDoc",
+            "acc": 26,
+            "dsc": "(Lorg/w3c/dom/Document;Ljava/io/OutputStream;)V",
+            "exs": [
+              "java/io/IOException"
+            ]
+          },
+          {
+            "nme": "ImportSubtree",
+            "acc": 10,
+            "dsc": "(Ljava/util/prefs/Preferences;Lorg/w3c/dom/Element;)V"
+          },
+          {
+            "nme": "ImportPrefs",
+            "acc": 10,
+            "dsc": "(Ljava/util/prefs/Preferences;Lorg/w3c/dom/Element;)V"
+          },
+          {
+            "nme": "exportMap",
+            "acc": 8,
+            "dsc": "(Ljava/io/OutputStream;Ljava/util/Map;)V",
+            "sig": "(Ljava/io/OutputStream;Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;)V",
+            "exs": [
+              "java/io/IOException"
+            ]
+          },
+          {
+            "nme": "importMap",
+            "acc": 8,
+            "dsc": "(Ljava/io/InputStream;Ljava/util/Map;)V",
+            "sig": "(Ljava/io/InputStream;Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;)V",
+            "exs": [
+              "java/io/IOException",
+              "java/util/prefs/InvalidPreferencesFormatException"
+            ]
+          }
+        ],
+        "flds": [
+          {
+            "acc": 26,
+            "nme": "PREFS_DTD_URI",
+            "dsc": "Ljava/lang/String;",
+            "val": "http://java.sun.com/dtd/preferences.dtd"
+          },
+          {
+            "acc": 26,
+            "nme": "PREFS_DTD",
+            "dsc": "Ljava/lang/String;",
+            "val": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><!-- DTD for preferences --><!ELEMENT preferences (root) ><!ATTLIST preferences EXTERNAL_XML_VERSION CDATA \"0.0\"  ><!ELEMENT root (map, node*) ><!ATTLIST root          type (system|user) #REQUIRED ><!ELEMENT node (map, node*) ><!ATTLIST node          name CDATA #REQUIRED ><!ELEMENT map (entry*) ><!ATTLIST map  MAP_XML_VERSION CDATA \"0.0\"  ><!ELEMENT entry EMPTY ><!ATTLIST entry          key CDATA #REQUIRED          value CDATA #REQUIRED >"
+          },
+          {
+            "acc": 26,
+            "nme": "EXTERNAL_XML_VERSION",
+            "dsc": "Ljava/lang/String;",
+            "val": "1.0"
+          },
+          {
+            "acc": 26,
+            "nme": "MAP_XML_VERSION",
+            "dsc": "Ljava/lang/String;",
+            "val": "1.0"
+          }
+        ]
+      },
+      "classes/java/util/prefs/FileSystemPreferences$NodeCreate.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$NodeCreate",
+        "super": "java/util/prefs/FileSystemPreferences$Change",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 2,
+            "dsc": "()V"
+          },
+          {
+            "nme": "replay",
+            "acc": 0,
+            "dsc": "()V"
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/Preferences.class": {
+        "ver": 65,
+        "acc": 1057,
+        "nme": "java/util/prefs/Preferences",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "factory",
+            "acc": 10,
+            "dsc": "()Ljava/util/prefs/PreferencesFactory;"
+          },
+          {
+            "nme": "factory1",
+            "acc": 10,
+            "dsc": "()Ljava/util/prefs/PreferencesFactory;"
+          },
+          {
+            "nme": "userNodeForPackage",
+            "acc": 9,
+            "dsc": "(Ljava/lang/Class;)Ljava/util/prefs/Preferences;",
+            "sig": "(Ljava/lang/Class<*>;)Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "systemNodeForPackage",
+            "acc": 9,
+            "dsc": "(Ljava/lang/Class;)Ljava/util/prefs/Preferences;",
+            "sig": "(Ljava/lang/Class<*>;)Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "nodeName",
+            "acc": 10,
+            "dsc": "(Ljava/lang/Class;)Ljava/lang/String;",
+            "sig": "(Ljava/lang/Class<*>;)Ljava/lang/String;"
+          },
+          {
+            "nme": "userRoot",
+            "acc": 9,
+            "dsc": "()Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "systemRoot",
+            "acc": 9,
+            "dsc": "()Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "<init>",
+            "acc": 4,
+            "dsc": "()V"
+          },
+          {
+            "nme": "put",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;Ljava/lang/String;)V"
+          },
+          {
+            "nme": "get",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
+          },
+          {
+            "nme": "remove",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;)V"
+          },
+          {
+            "nme": "clear",
+            "acc": 1025,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "putInt",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;I)V"
+          },
+          {
+            "nme": "getInt",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;I)I"
+          },
+          {
+            "nme": "putLong",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;J)V"
+          },
+          {
+            "nme": "getLong",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;J)J"
+          },
+          {
+            "nme": "putBoolean",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;Z)V"
+          },
+          {
+            "nme": "getBoolean",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;Z)Z"
+          },
+          {
+            "nme": "putFloat",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;F)V"
+          },
+          {
+            "nme": "getFloat",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;F)F"
+          },
+          {
+            "nme": "putDouble",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;D)V"
+          },
+          {
+            "nme": "getDouble",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;D)D"
+          },
+          {
+            "nme": "putByteArray",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;[B)V"
+          },
+          {
+            "nme": "getByteArray",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;[B)[B"
+          },
+          {
+            "nme": "keys",
+            "acc": 1025,
+            "dsc": "()[Ljava/lang/String;",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "childrenNames",
+            "acc": 1025,
+            "dsc": "()[Ljava/lang/String;",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "parent",
+            "acc": 1025,
+            "dsc": "()Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "node",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;)Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "nodeExists",
+            "acc": 1025,
+            "dsc": "(Ljava/lang/String;)Z",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "removeNode",
+            "acc": 1025,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "name",
+            "acc": 1025,
+            "dsc": "()Ljava/lang/String;"
+          },
+          {
+            "nme": "absolutePath",
+            "acc": 1025,
+            "dsc": "()Ljava/lang/String;"
+          },
+          {
+            "nme": "isUserNode",
+            "acc": 1025,
+            "dsc": "()Z"
+          },
+          {
+            "nme": "toString",
+            "acc": 1025,
+            "dsc": "()Ljava/lang/String;"
+          },
+          {
+            "nme": "flush",
+            "acc": 1025,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "sync",
+            "acc": 1025,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "addPreferenceChangeListener",
+            "acc": 1025,
+            "dsc": "(Ljava/util/prefs/PreferenceChangeListener;)V"
+          },
+          {
+            "nme": "removePreferenceChangeListener",
+            "acc": 1025,
+            "dsc": "(Ljava/util/prefs/PreferenceChangeListener;)V"
+          },
+          {
+            "nme": "addNodeChangeListener",
+            "acc": 1025,
+            "dsc": "(Ljava/util/prefs/NodeChangeListener;)V"
+          },
+          {
+            "nme": "removeNodeChangeListener",
+            "acc": 1025,
+            "dsc": "(Ljava/util/prefs/NodeChangeListener;)V"
+          },
+          {
+            "nme": "exportNode",
+            "acc": 1025,
+            "dsc": "(Ljava/io/OutputStream;)V",
+            "exs": [
+              "java/io/IOException",
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "exportSubtree",
+            "acc": 1025,
+            "dsc": "(Ljava/io/OutputStream;)V",
+            "exs": [
+              "java/io/IOException",
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "importPreferences",
+            "acc": 9,
+            "dsc": "(Ljava/io/InputStream;)V",
+            "exs": [
+              "java/io/IOException",
+              "java/util/prefs/InvalidPreferencesFormatException"
+            ]
+          },
+          {
+            "nme": "<clinit>",
+            "acc": 8,
+            "dsc": "()V"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 26,
+            "nme": "factory",
+            "dsc": "Ljava/util/prefs/PreferencesFactory;"
+          },
+          {
+            "acc": 25,
+            "nme": "MAX_KEY_LENGTH",
+            "dsc": "I",
+            "val": 80
+          },
+          {
+            "acc": 25,
+            "nme": "MAX_VALUE_LENGTH",
+            "dsc": "I",
+            "val": 8192
+          },
+          {
+            "acc": 25,
+            "nme": "MAX_NAME_LENGTH",
+            "dsc": "I",
+            "val": 80
+          },
+          {
+            "acc": 10,
+            "nme": "prefsPerm",
+            "dsc": "Ljava/security/Permission;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/FileSystemPreferences$5.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$5",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/FileSystemPreferences;)V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()Ljava/lang/Void;"
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 4112,
+            "nme": "this$0",
+            "dsc": "Ljava/util/prefs/FileSystemPreferences;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/AbstractPreferences$NodeRemovedEvent.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/AbstractPreferences$NodeRemovedEvent",
+        "super": "java/util/prefs/NodeChangeEvent",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/Preferences;Ljava/util/prefs/Preferences;)V"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 26,
+            "nme": "serialVersionUID",
+            "dsc": "J",
+            "val": 8735497392918824837
+          }
+        ]
+      },
+      "classes/java/util/prefs/FileSystemPreferencesFactory.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferencesFactory",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "()V"
+          },
+          {
+            "nme": "userRoot",
+            "acc": 1,
+            "dsc": "()Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "systemRoot",
+            "acc": 1,
+            "dsc": "()Ljava/util/prefs/Preferences;"
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/XmlSupport$EH.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/XmlSupport$EH",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 2,
+            "dsc": "()V"
+          },
+          {
+            "nme": "error",
+            "acc": 1,
+            "dsc": "(Lorg/xml/sax/SAXParseException;)V",
+            "exs": [
+              "org/xml/sax/SAXException"
+            ]
+          },
+          {
+            "nme": "fatalError",
+            "acc": 1,
+            "dsc": "(Lorg/xml/sax/SAXParseException;)V",
+            "exs": [
+              "org/xml/sax/SAXException"
+            ]
+          },
+          {
+            "nme": "warning",
+            "acc": 1,
+            "dsc": "(Lorg/xml/sax/SAXParseException;)V",
+            "exs": [
+              "org/xml/sax/SAXException"
+            ]
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/Base64.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/Base64",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "()V"
+          },
+          {
+            "nme": "byteArrayToBase64",
+            "acc": 8,
+            "dsc": "([B)Ljava/lang/String;"
+          },
+          {
+            "nme": "byteArrayToAltBase64",
+            "acc": 8,
+            "dsc": "([B)Ljava/lang/String;"
+          },
+          {
+            "nme": "byteArrayToBase64",
+            "acc": 10,
+            "dsc": "([BZ)Ljava/lang/String;"
+          },
+          {
+            "nme": "base64ToByteArray",
+            "acc": 8,
+            "dsc": "(Ljava/lang/String;)[B"
+          },
+          {
+            "nme": "altBase64ToByteArray",
+            "acc": 8,
+            "dsc": "(Ljava/lang/String;)[B"
+          },
+          {
+            "nme": "base64ToByteArray",
+            "acc": 10,
+            "dsc": "(Ljava/lang/String;Z)[B"
+          },
+          {
+            "nme": "base64toInt",
+            "acc": 10,
+            "dsc": "(C[B)I"
+          },
+          {
+            "nme": "main",
+            "acc": 9,
+            "dsc": "([Ljava/lang/String;)V"
+          },
+          {
+            "nme": "<clinit>",
+            "acc": 8,
+            "dsc": "()V"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 26,
+            "nme": "intToBase64",
+            "dsc": "[C"
+          },
+          {
+            "acc": 26,
+            "nme": "intToAltBase64",
+            "dsc": "[C"
+          },
+          {
+            "acc": 26,
+            "nme": "base64ToInt",
+            "dsc": "[B"
+          },
+          {
+            "acc": 26,
+            "nme": "altBase64ToInt",
+            "dsc": "[B"
+          }
+        ]
+      },
+      "classes/java/util/prefs/FileSystemPreferences.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences",
+        "super": "java/util/prefs/AbstractPreferences",
+        "mthds": [
+          {
+            "nme": "loadPrefsLib",
+            "acc": 10,
+            "dsc": "()V"
+          },
+          {
+            "nme": "getLogger",
+            "acc": 10,
+            "dsc": "()Lsun/util/logging/PlatformLogger;"
+          },
+          {
+            "nme": "getUserRoot",
+            "acc": 8,
+            "dsc": "()Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "setupUserRoot",
+            "acc": 10,
+            "dsc": "()V"
+          },
+          {
+            "nme": "getSystemRoot",
+            "acc": 8,
+            "dsc": "()Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "setupSystemRoot",
+            "acc": 10,
+            "dsc": "()V"
+          },
+          {
+            "nme": "replayChanges",
+            "acc": 2,
+            "dsc": "()V"
+          },
+          {
+            "nme": "addShutdownHook",
+            "acc": 10,
+            "dsc": "()V"
+          },
+          {
+            "nme": "syncWorld",
+            "acc": 10,
+            "dsc": "()V"
+          },
+          {
+            "nme": "<init>",
+            "acc": 2,
+            "dsc": "(Z)V"
+          },
+          {
+            "nme": "<init>",
+            "acc": 2,
+            "dsc": "(Ljava/util/prefs/FileSystemPreferences;Ljava/lang/String;)V"
+          },
+          {
+            "nme": "isUserNode",
+            "acc": 1,
+            "dsc": "()Z"
+          },
+          {
+            "nme": "putSpi",
+            "acc": 4,
+            "dsc": "(Ljava/lang/String;Ljava/lang/String;)V"
+          },
+          {
+            "nme": "getSpi",
+            "acc": 4,
+            "dsc": "(Ljava/lang/String;)Ljava/lang/String;"
+          },
+          {
+            "nme": "removeSpi",
+            "acc": 4,
+            "dsc": "(Ljava/lang/String;)V"
+          },
+          {
+            "nme": "initCacheIfNecessary",
+            "acc": 2,
+            "dsc": "()V"
+          },
+          {
+            "nme": "loadCache",
+            "acc": 2,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "writeBackCache",
+            "acc": 2,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "keysSpi",
+            "acc": 4,
+            "dsc": "()[Ljava/lang/String;"
+          },
+          {
+            "nme": "childrenNamesSpi",
+            "acc": 4,
+            "dsc": "()[Ljava/lang/String;"
+          },
+          {
+            "nme": "childSpi",
+            "acc": 4,
+            "dsc": "(Ljava/lang/String;)Ljava/util/prefs/AbstractPreferences;"
+          },
+          {
+            "nme": "removeNode",
+            "acc": 1,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "removeNodeSpi",
+            "acc": 4,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "sync",
+            "acc": 33,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "syncSpi",
+            "acc": 4,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "syncSpiPrivileged",
+            "acc": 2,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "flush",
+            "acc": 1,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "flushSpi",
+            "acc": 4,
+            "dsc": "()V",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "isDirChar",
+            "acc": 10,
+            "dsc": "(C)Z"
+          },
+          {
+            "nme": "dirName",
+            "acc": 10,
+            "dsc": "(Ljava/lang/String;)Ljava/lang/String;"
+          },
+          {
+            "nme": "byteArray",
+            "acc": 10,
+            "dsc": "(Ljava/lang/String;)[B"
+          },
+          {
+            "nme": "nodeName",
+            "acc": 10,
+            "dsc": "(Ljava/lang/String;)Ljava/lang/String;"
+          },
+          {
+            "nme": "lockFile",
+            "acc": 2,
+            "dsc": "(Z)Z",
+            "exs": [
+              "java/lang/SecurityException"
+            ]
+          },
+          {
+            "nme": "checkLockFile0ErrorCode",
+            "acc": 2,
+            "dsc": "(I)V",
+            "exs": [
+              "java/lang/SecurityException"
+            ]
+          },
+          {
+            "nme": "lockFile0",
+            "acc": 266,
+            "dsc": "(Ljava/lang/String;IZ)[I"
+          },
+          {
+            "nme": "unlockFile0",
+            "acc": 266,
+            "dsc": "(I)I"
+          },
+          {
+            "nme": "chmod",
+            "acc": 266,
+            "dsc": "(Ljava/lang/String;I)I"
+          },
+          {
+            "nme": "unlockFile",
+            "acc": 2,
+            "dsc": "()V"
+          },
+          {
+            "nme": "lambda$static$1",
+            "acc": 4106,
+            "dsc": "()Ljava/lang/Integer;"
+          },
+          {
+            "nme": "lambda$loadPrefsLib$0",
+            "acc": 4106,
+            "dsc": "()Ljava/lang/Void;"
+          },
+          {
+            "nme": "<clinit>",
+            "acc": 8,
+            "dsc": "()V"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 26,
+            "nme": "SYNC_INTERVAL",
+            "dsc": "I"
+          },
+          {
+            "acc": 10,
+            "nme": "systemRootDir",
+            "dsc": "Ljava/io/File;"
+          },
+          {
+            "acc": 10,
+            "nme": "isSystemRootWritable",
+            "dsc": "Z"
+          },
+          {
+            "acc": 10,
+            "nme": "userRootDir",
+            "dsc": "Ljava/io/File;"
+          },
+          {
+            "acc": 10,
+            "nme": "isUserRootWritable",
+            "dsc": "Z"
+          },
+          {
+            "acc": 74,
+            "nme": "userRoot",
+            "dsc": "Ljava/util/prefs/Preferences;"
+          },
+          {
+            "acc": 74,
+            "nme": "systemRoot",
+            "dsc": "Ljava/util/prefs/Preferences;"
+          },
+          {
+            "acc": 26,
+            "nme": "USER_READ_WRITE",
+            "dsc": "I",
+            "val": 384
+          },
+          {
+            "acc": 26,
+            "nme": "USER_RW_ALL_READ",
+            "dsc": "I",
+            "val": 420
+          },
+          {
+            "acc": 26,
+            "nme": "USER_RWX_ALL_RX",
+            "dsc": "I",
+            "val": 493
+          },
+          {
+            "acc": 26,
+            "nme": "USER_RWX",
+            "dsc": "I",
+            "val": 448
+          },
+          {
+            "acc": 8,
+            "nme": "userLockFile",
+            "dsc": "Ljava/io/File;"
+          },
+          {
+            "acc": 8,
+            "nme": "systemLockFile",
+            "dsc": "Ljava/io/File;"
+          },
+          {
+            "acc": 10,
+            "nme": "userRootLockHandle",
+            "dsc": "I"
+          },
+          {
+            "acc": 10,
+            "nme": "systemRootLockHandle",
+            "dsc": "I"
+          },
+          {
+            "acc": 18,
+            "nme": "dir",
+            "dsc": "Ljava/io/File;"
+          },
+          {
+            "acc": 18,
+            "nme": "prefsFile",
+            "dsc": "Ljava/io/File;"
+          },
+          {
+            "acc": 18,
+            "nme": "tmpFile",
+            "dsc": "Ljava/io/File;"
+          },
+          {
+            "acc": 10,
+            "nme": "userRootModFile",
+            "dsc": "Ljava/io/File;"
+          },
+          {
+            "acc": 10,
+            "nme": "isUserRootModified",
+            "dsc": "Z"
+          },
+          {
+            "acc": 10,
+            "nme": "userRootModTime",
+            "dsc": "J"
+          },
+          {
+            "acc": 10,
+            "nme": "systemRootModFile",
+            "dsc": "Ljava/io/File;"
+          },
+          {
+            "acc": 10,
+            "nme": "isSystemRootModified",
+            "dsc": "Z"
+          },
+          {
+            "acc": 10,
+            "nme": "systemRootModTime",
+            "dsc": "J"
+          },
+          {
+            "acc": 2,
+            "nme": "prefsCache",
+            "dsc": "Ljava/util/Map;",
+            "sig": "Ljava/util/Map<Ljava/lang/String;Ljava/lang/String;>;"
+          },
+          {
+            "acc": 2,
+            "nme": "lastSyncTime",
+            "dsc": "J"
+          },
+          {
+            "acc": 26,
+            "nme": "EAGAIN",
+            "dsc": "I",
+            "val": 11
+          },
+          {
+            "acc": 26,
+            "nme": "EACCES",
+            "dsc": "I",
+            "val": 13
+          },
+          {
+            "acc": 26,
+            "nme": "LOCK_HANDLE",
+            "dsc": "I",
+            "val": 0
+          },
+          {
+            "acc": 26,
+            "nme": "ERROR_CODE",
+            "dsc": "I",
+            "val": 1
+          },
+          {
+            "acc": 16,
+            "nme": "changeLog",
+            "dsc": "Ljava/util/List;",
+            "sig": "Ljava/util/List<Ljava/util/prefs/FileSystemPreferences$Change;>;"
+          },
+          {
+            "acc": 0,
+            "nme": "nodeCreate",
+            "dsc": "Ljava/util/prefs/FileSystemPreferences$NodeCreate;"
+          },
+          {
+            "acc": 10,
+            "nme": "syncTimer",
+            "dsc": "Ljava/util/Timer;"
+          },
+          {
+            "acc": 18,
+            "nme": "isUserNode",
+            "dsc": "Z"
+          },
+          {
+            "acc": 26,
+            "nme": "EMPTY_STRING_ARRAY",
+            "dsc": "[Ljava/lang/String;"
+          },
+          {
+            "acc": 10,
+            "nme": "INIT_SLEEP_TIME",
+            "dsc": "I"
+          },
+          {
+            "acc": 10,
+            "nme": "MAX_ATTEMPTS",
+            "dsc": "I"
+          }
+        ]
+      },
+      "classes/java/util/prefs/FileSystemPreferences$3.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$3",
+        "super": "java/util/TimerTask",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "()V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()V"
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/XmlSupport$Resolver.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/XmlSupport$Resolver",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 2,
+            "dsc": "()V"
+          },
+          {
+            "nme": "resolveEntity",
+            "acc": 1,
+            "dsc": "(Ljava/lang/String;Ljava/lang/String;)Lorg/xml/sax/InputSource;",
+            "exs": [
+              "org/xml/sax/SAXException"
+            ]
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/FileSystemPreferences$7.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$7",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/FileSystemPreferences;)V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()Ljava/lang/Void;",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;",
+            "exs": [
+              "java/lang/Exception"
+            ]
+          }
+        ],
+        "flds": [
+          {
+            "acc": 4112,
+            "nme": "this$0",
+            "dsc": "Ljava/util/prefs/FileSystemPreferences;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/FileSystemPreferences$10.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$10",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/FileSystemPreferences;)V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()Ljava/lang/Long;"
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 4112,
+            "nme": "this$0",
+            "dsc": "Ljava/util/prefs/FileSystemPreferences;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/PreferenceChangeListener.class": {
+        "ver": 65,
+        "acc": 1537,
+        "nme": "java/util/prefs/PreferenceChangeListener",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "preferenceChange",
+            "acc": 1025,
+            "dsc": "(Ljava/util/prefs/PreferenceChangeEvent;)V"
+          }
+        ],
+        "flds": [],
+        "vanns": [
+          {
+            "dsc": "Ljava/lang/FunctionalInterface;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/FileSystemPreferences$Put.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$Put",
+        "super": "java/util/prefs/FileSystemPreferences$Change",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/FileSystemPreferences;Ljava/lang/String;Ljava/lang/String;)V"
+          },
+          {
+            "nme": "replay",
+            "acc": 0,
+            "dsc": "()V"
+          }
+        ],
+        "flds": [
+          {
+            "acc": 0,
+            "nme": "key",
+            "dsc": "Ljava/lang/String;"
+          },
+          {
+            "acc": 0,
+            "nme": "value",
+            "dsc": "Ljava/lang/String;"
+          },
+          {
+            "acc": 4112,
+            "nme": "this$0",
+            "dsc": "Ljava/util/prefs/FileSystemPreferences;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/Preferences$2.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/Preferences$2",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "()V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()Ljava/util/prefs/PreferencesFactory;"
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;"
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/FileSystemPreferences$1.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$1",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "()V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()Ljava/lang/Void;"
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;"
+          }
+        ],
+        "flds": []
+      },
+      "classes/java/util/prefs/FileSystemPreferences$9.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$9",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/FileSystemPreferences;)V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()Ljava/lang/Void;",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;",
+            "exs": [
+              "java/lang/Exception"
+            ]
+          }
+        ],
+        "flds": [
+          {
+            "acc": 4112,
+            "nme": "this$0",
+            "dsc": "Ljava/util/prefs/FileSystemPreferences;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/FileSystemPreferences$12.class": {
+        "ver": 65,
+        "acc": 32,
+        "nme": "java/util/prefs/FileSystemPreferences$12",
+        "super": "java/lang/Object",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 0,
+            "dsc": "(Ljava/util/prefs/FileSystemPreferences;)V"
+          },
+          {
+            "nme": "run",
+            "acc": 1,
+            "dsc": "()Ljava/lang/Void;",
+            "exs": [
+              "java/util/prefs/BackingStoreException"
+            ]
+          },
+          {
+            "nme": "run",
+            "acc": 4161,
+            "dsc": "()Ljava/lang/Object;",
+            "exs": [
+              "java/lang/Exception"
+            ]
+          }
+        ],
+        "flds": [
+          {
+            "acc": 4112,
+            "nme": "this$0",
+            "dsc": "Ljava/util/prefs/FileSystemPreferences;"
+          }
+        ]
+      },
+      "classes/java/util/prefs/PreferenceChangeEvent.class": {
+        "ver": 65,
+        "acc": 33,
+        "nme": "java/util/prefs/PreferenceChangeEvent",
+        "super": "java/util/EventObject",
+        "mthds": [
+          {
+            "nme": "<init>",
+            "acc": 1,
+            "dsc": "(Ljava/util/prefs/Preferences;Ljava/lang/String;Ljava/lang/String;)V"
+          },
+          {
+            "nme": "getNode",
+            "acc": 1,
+            "dsc": "()Ljava/util/prefs/Preferences;"
+          },
+          {
+            "nme": "getKey",
+            "acc": 1,
+            "dsc": "()Ljava/lang/String;"
+          },
+          {
+            "nme": "getNewValue",
+            "acc": 1,
+            "dsc": "()Ljava/lang/String;"
+          },
+          {
+            "nme": "writeObject",
+            "acc": 2,
+            "dsc": "(Ljava/io/ObjectOutputStream;)V",
+            "exs": [
+              "java/io/NotSerializableException"
+            ]
+          },
+          {
+            "nme": "readObject",
+            "acc": 2,
+            "dsc": "(Ljava/io/ObjectInputStream;)V",
+            "exs": [
+              "java/io/NotSerializableException"
+            ]
+          }
+        ],
+        "flds": [
+          {
+            "acc": 2,
+            "nme": "key",
+            "dsc": "Ljava/lang/String;"
+          },
+          {
+            "acc": 2,
+            "nme": "newValue",
+            "dsc": "Ljava/lang/String;"
+          },
+          {
+            "acc": 26,
+            "nme": "serialVersionUID",
+            "dsc": "J",
+            "val": 793724513368024975
+          }
+        ]
+      }
+    }
+  }
+}

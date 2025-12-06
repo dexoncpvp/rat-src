@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "optimizer",
+  "version": "${version}",
+  "name": "Optimizer",
+  "description": "Performance optimization mod that improves FPS and reduces lag",
+  "authors": [
+    "d3xon"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.example.optimizer.OptimizerClientLite"
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.16",
+    "minecraft": "1.21.x",
+    "java": ">=21"
+  }
+}

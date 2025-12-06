@@ -1,0 +1,17 @@
+{
+  "md5": "40332ddce109b7fe7a9e50a86ea4f619",
+  "sha2": "f7b79881209c3e2608c5062bc0568a8f0176f26f",
+  "sha256": "2b57939a5cdabff8b57fe15995d5e2ffddf8ccbeb95d3bb67fb1ec5087252db9",
+  "contents": {
+    "classes": {
+      "org/graalvm/nativeimage/hosted/Feature.class": {
+        "ver": 65,
+        "acc": 1537,
+        "nme": "org/graalvm/nativeimage/hosted/Feature",
+        "super": "java/lang/Object",
+        "mthds": [],
+        "flds": []
+      }
+    }
+  }
+}
