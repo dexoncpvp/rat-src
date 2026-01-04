@@ -1,0 +1,134 @@
+<!-- templates/soundboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Troll Soundboard | Optimizer</title>
+    <link href="/static/css/style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+    <script>if (!localStorage.getItem("token")) window.location.href = "/";</script>
+    <style>
+        body {
+            background: #050505;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            align-items: center;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .sound-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #333;
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sound-btn:hover {
+            background: #00ff9d;
+            color: black;
+            transform: scale(1.05);
+        }
+
+        .sound-btn i {
+            font-size: 24px;
+        }
+
+        select {
+            background: #111;
+            color: white;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 6px;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <h1>🔊 Troll Soundboard</h1>
+    <select id="player-select">
+        <option value="">Select Victim...</option>
+    </select>
+
+    <div id="board" class="glass">
+        <button class="sound-btn" onclick="play('creeper')"><i class="fas fa-bug"></i> Creeper Hiss</button>
+        <button class="sound-btn" onclick="play('tnt')"><i class="fas fa-bomb"></i> TNT Prime</button>
+        <button class="sound-btn" onclick="play('anvil')"><i class="fas fa-weight-hanging"></i> Anvil Land</button>
+        <button class="sound-btn" onclick="play('cave')"><i class="fas fa-ghost"></i> Cave Noise</button>
+        <button class="sound-btn" onclick="play('glass')"><i class="fas fa-wine-glass-empty"></i> Glass Break</button>
+        <button class="sound-btn" onclick="play('explode')"><i class="fas fa-radiation"></i> Explosion</button>
+    </div>
+
+    <script>
+        const socket = io();
+        const select = document.getElementById('player-select');
+        let currentPlayer = '';
+
+        // Auth
+        const token = localStorage.getItem('token');
+        socket.emit('authenticate', { token: token });
+
+        function play(sound) {
+            currentPlayer = select.value;
+            if (!currentPlayer) {
+                alert("Select a victim first!");
+                return;
+            }
+
+            // Preview locally (optional, requires sound files)
+            // const audio = new Audio('/static/sounds/' + sound + '.ogg');
+            // audio.play().catch(e => {});
+
+            socket.emit('play_sound', { player: currentPlayer, sound: sound });
+        }
+
+        // Fetch online players
+        async function loadPlayers() {
+            const res = await fetch('/api/v1/online/list', { headers: { 'Authorization': 'Bearer ' + token } });
+            const data = await res.json();
+            select.innerHTML = '<option value="">Select Victim...</option>';
+            data.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.player;
+                opt.innerText = p.player;
+                select.appendChild(opt);
+            });
+        }
+        loadPlayers();
+        setInterval(loadPlayers, 5000);
+    </script>
+</body>
+
+</html>

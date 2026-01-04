@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About | NIGGAWARE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0a0a0f;
+  --accent: #00ff9c;
+  --accent-glow: rgba(0, 255, 156, 0.4);
+  --danger: #ff003c;
+  --danger-glow: rgba(255, 0, 60, 0.4);
+  --gold: #ffd700;
+  --gold-glow: rgba(255, 215, 0, 0.4);
+  --muted: #444;
+  --trash-color: #8b4513;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  overflow: hidden;
+}
+
+/* Animated background grid */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 255, 156, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 156, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Particles */
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFall 8s linear infinite;
+}
+
+@keyframes particleFall {
+  0% { opacity: 0; transform: translateY(-100px); }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(100vh); }
+}
+
+/* Stage */
+#stage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* Competitor RATs */
+.competitor-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 200px;
+  opacity: 0;
+}
+
+.competitor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 1s ease;
+}
+
+.competitor.maksrat {
+  transform: translateX(-100vw);
+}
+
+.competitor.easyforme {
+  transform: translateX(100vw);
+}
+
+.competitor.enter.maksrat {
+  transform: translateX(0);
+}
+
+.competitor.enter.easyforme {
+  transform: translateX(0);
+}
+
+.competitor-icon {
+  font-size: 80px;
+  filter: grayscale(1) opacity(0.7);
+  transition: all 0.5s;
+}
+
+.competitor-name {
+  font-family: 'Orbitron', monospace;
+  font-size: 24px;
+  color: var(--muted);
+  margin-top: 10px;
+  letter-spacing: 3px;
+}
+
+/* Mogged overlay on competitors */
+.mogged-stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg) scale(0);
+  font-family: 'Orbitron', monospace;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--danger);
+  text-shadow: 0 0 20px var(--danger-glow), 0 0 40px var(--danger-glow);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  white-space: nowrap;
+}
+
+.mogged-stamp.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(-15deg) scale(1);
+}
+
+/* Main RAT - NIGGAWARE */
+#niggaware-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  text-align: center;
+  opacity: 0;
+  transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 100;
+}
+
+#niggaware-container.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.main-icon {
+  font-size: 120px;
+  animation: mainPulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px var(--accent-glow));
+}
+
+@keyframes mainPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.main-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 80px;
+  font-weight: 900;
+  background: linear-gradient(90deg, #ffd700, #ffec8b, #daa520, #ffd700, #ffec8b);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShift 3s ease infinite;
+  letter-spacing: 12px;
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 40px rgba(255, 215, 0, 0.4));
+}
+
+@keyframes goldShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes textGlow {
+  0% { filter: drop-shadow(0 0 20px var(--gold)) drop-shadow(0 0 40px var(--gold-glow)); }
+  100% { filter: drop-shadow(0 0 40px var(--gold)) drop-shadow(0 0 80px var(--gold-glow)); }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.crown {
+  font-size: 60px;
+  animation: crownFloat 2s ease-in-out infinite;
+}
+
+@keyframes crownFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* Laugh emoji */
+#laugh-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  z-index: 50;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#laugh-container.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#laugh-container.hide {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(2);
+}
+
+.laugh-emoji {
+  font-size: 150px;
+  animation: laughShake 0.3s ease-in-out infinite;
+}
+
+@keyframes laughShake {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+/* Features list */
+#features {
+  position: absolute;
+  bottom: 180px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  max-width: 900px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+#features.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature {
+  background: rgba(0, 255, 156, 0.1);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.feature.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.feature:hover {
+  background: rgba(0, 255, 156, 0.2);
+  box-shadow: 0 0 20px var(--accent-glow);
+  transform: scale(1.05);
+}
+
+/* Trash bin */
+#trash-container {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.8s ease;
+}
+
+#trash-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.trash-icon {
+  font-size: 100px;
+  filter: drop-shadow(0 0 20px rgba(139, 69, 19, 0.5));
+  transition: transform 0.3s;
+}
+
+.trash-label {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 5px;
+  letter-spacing: 2px;
+}
+
+/* Falling animation for competitors */
+.competitor.fall {
+  animation: fallToTrash 1.5s ease-in forwards;
+}
+
+@keyframes fallToTrash {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(0) translateY(200px) rotate(180deg) scale(0.7);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(0) translateY(350px) rotate(360deg) scale(0.2);
+    opacity: 0;
+  }
+}
+
+/* Trash shake when receiving garbage */
+.trash-icon.shake {
+  animation: trashShake 0.5s ease-in-out;
+}
+
+@keyframes trashShake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+/* Final dominance overlay */
+#dominance {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 255, 156, 0.2) 0%, rgba(0, 0, 0, 0.95) 70%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 120px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+  z-index: 200;
+}
+
+#dominance.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.dominance-text {
+  font-family: 'Orbitron', monospace;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--accent);
+  text-shadow: 0 0 30px var(--accent-glow), 0 0 60px var(--accent-glow);
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid var(--accent);
+  animation: typewriterBlink 0.7s step-end infinite;
+}
+
+@keyframes typewriterBlink {
+  0%, 100% { border-color: var(--accent); }
+  50% { border-color: transparent; }
+}
+
+.restart-hint {
+  margin-top: 40px;
+  font-size: 16px;
+  color: var(--muted);
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Scanlines overlay */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Glitch effect */
+.glitch {
+  animation: glitch 0.3s infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 0 #ff003c, -2px 0 #00ffff; }
+  25% { text-shadow: -2px 0 #ff003c, 2px 0 #00ffff; }
+  50% { text-shadow: 2px 2px #ff003c, -2px -2px #00ffff; }
+  75% { text-shadow: -2px 2px #ff003c, 2px -2px #00ffff; }
+  100% { text-shadow: 2px 0 #ff003c, -2px 0 #00ffff; }
+}
+
+/* Start prompt */
+#start-prompt {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  cursor: pointer;
+  transition: opacity 0.5s;
+}
+
+#start-prompt.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.start-text {
+  font-family: 'Orbitron', monospace;
+  font-size: 32px;
+  color: var(--accent);
+  animation: startPulse 2s ease-in-out infinite;
+}
+
+@keyframes startPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.start-subtitle {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+  <source src="/static/music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="grid-bg"></div>
+<div class="particles" id="particles"></div>
+<div class="scanlines"></div>
+
+<!-- Start prompt (needed for autoplay policy) -->
+<div id="start-prompt">
+  <div class="start-text">▶ CLICK TO BEGIN</div>
+  <div class="start-subtitle">Experience the dominance</div>
+</div>
+
+<div id="stage">
+  <!-- Competitors -->
+  <div class="competitor-container" id="competitors">
+    <div class="competitor maksrat" id="maksrat">
+      <div class="competitor-icon">🐀</div>
+      <div class="competitor-name">MAKSRAT</div>
+      <div class="mogged-stamp" id="mogged1">MOGGED</div>
+    </div>
+    
+    <div class="competitor easyforme" id="easyforme">
+      <div class="competitor-icon">🐀</div>
+      <div class="competitor-name">EASYFORME</div>
+      <div class="mogged-stamp" id="mogged2">MOGGED</div>
+    </div>
+  </div>
+
+  <!-- Laugh emoji -->
+  <div id="laugh-container">
+    <div class="laugh-emoji">😂</div>
+  </div>
+
+  <!-- Main RAT -->
+  <div id="niggaware-container">
+    <div class="crown">👑</div>
+    <div class="main-icon">🐀</div>
+    <div class="main-title">NIGGAWARE</div>
+  </div>
+
+  <!-- Features -->
+  <div id="features">
+    <div class="feature">🎮 MC SESSION STEAL</div>
+    <div class="feature">💬 DISCORD TOKENS</div>
+    <div class="feature">📸 WEBCAM CAPTURE</div>
+    <div class="feature">🖥️ SCREEN CAPTURE</div>
+    <div class="feature">🌐 BROWSER DATA</div>
+    <div class="feature">💰 CRYPTO WALLETS</div>
+    <div class="feature">⌨️ KEYLOGGER</div>
+    <div class="feature">📁 FILE MANAGER</div>
+    <div class="feature">💻 REMOTE SHELL</div>
+    <div class="feature">🔐 CREDENTIAL DUMP</div>
+    <div class="feature">📡 LIVE STREAMING</div>
+    <div class="feature">🎯 ANTI-DETECTION</div>
+  </div>
+
+  <!-- Trash -->
+  <div id="trash-container">
+    <div class="trash-icon" id="trash">🗑️</div>
+    <div class="trash-label">WHERE THEY BELONG</div>
+  </div>
+</div>
+
+<!-- Final overlay -->
+<div id="dominance">
+  <div class="dominance-text" id="dominance-text"></div>
+  <div class="restart-hint">Click anywhere to replay</div>
+</div>
+
+<script>
+// Elements
+const music = document.getElementById('music');
+const startPrompt = document.getElementById('start-prompt');
+const competitors = document.getElementById('competitors');
+const maksrat = document.getElementById('maksrat');
+const easyforme = document.getElementById('easyforme');
+const mogged1 = document.getElementById('mogged1');
+const mogged2 = document.getElementById('mogged2');
+const niggaware = document.getElementById('niggaware-container');
+const features = document.getElementById('features');
+const featureItems = document.querySelectorAll('.feature');
+const trashContainer = document.getElementById('trash-container');
+const trash = document.getElementById('trash');
+const dominance = document.getElementById('dominance');
+const dominanceText = document.getElementById('dominance-text');
+const laughContainer = document.getElementById('laugh-container');
+
+let isRunning = false;
+
+// Create particles
+function createParticles() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 8 + 's';
+    particle.style.animationDuration = (5 + Math.random() * 5) + 's';
+    container.appendChild(particle);
+  }
+}
+
+createParticles();
+
+// Animation sequence
+function runSequence() {
+  if (isRunning) return;
+  isRunning = true;
+
+  // Start music with error handling
+  music.currentTime = 0;
+  music.volume = 1.0;
+  music.play().then(() => {
+    console.log('Music playing');
+  }).catch(err => {
+    console.log('Music autoplay blocked:', err);
+  });
+
+  // Phase 1: Competitors fly in (0-1s)
+  competitors.style.opacity = '1';
+  setTimeout(() => maksrat.classList.add('enter'), 200);
+  setTimeout(() => easyforme.classList.add('enter'), 400);
+
+  // Phase 1.5: Laugh emoji appears (1.5s)
+  setTimeout(() => {
+    laughContainer.classList.add('show');
+  }, 1500);
+
+  // Phase 1.6: Laugh emoji fades out (2.5s)
+  setTimeout(() => {
+    laughContainer.classList.remove('show');
+    laughContainer.classList.add('hide');
+  }, 2500);
+
+  // Phase 2: MOGGED stamps appear (5s)
+  setTimeout(() => {
+    mogged1.classList.add('show');
+    mogged2.classList.add('show');
+  }, 5000);
+
+  // Phase 3: NIGGAWARE appears with impact (6s)
+  setTimeout(() => {
+    niggaware.classList.add('show');
+  }, 6000);
+
+  // Phase 4: Features start appearing (7s)
+  setTimeout(() => {
+    features.classList.add('show');
+    featureItems.forEach((item, index) => {
+      setTimeout(() => item.classList.add('show'), index * 80);
+    });
+  }, 7000);
+
+  // Phase 5: Trash appears (8s)
+  setTimeout(() => {
+    trashContainer.classList.add('show');
+  }, 8000);
+
+  // Phase 6: Competitors fall into trash (9s)
+  setTimeout(() => {
+    maksrat.classList.add('fall');
+    easyforme.classList.add('fall');
+  }, 9000);
+
+  // Trash shakes when receiving garbage
+  setTimeout(() => {
+    trash.classList.add('shake');
+    setTimeout(() => trash.classList.remove('shake'), 500);
+  }, 10200);
+
+  // Phase 7: Dominance overlay with typewriter (11s)
+  setTimeout(() => {
+    dominance.classList.add('show');
+    typeWriter('NIGGAWARE ON TOP', dominanceText, 80);
+  }, 11000);
+}
+
+// Typewriter effect
+function typeWriter(text, element, speed) {
+  element.textContent = '';
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      element.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
+}
+
+function reset() {
+  music.pause();
+  competitors.style.opacity = '0';
+  maksrat.classList.remove('enter', 'fall');
+  easyforme.classList.remove('enter', 'fall');
+  mogged1.classList.remove('show');
+  mogged2.classList.remove('show');
+  niggaware.classList.remove('show');
+  features.classList.remove('show');
+  featureItems.forEach(item => item.classList.remove('show'));
+  trashContainer.classList.remove('show');
+  dominance.classList.remove('show');
+  dominanceText.textContent = '';
+  laughContainer.classList.remove('show', 'hide');
+  isRunning = false;
+}
+
+// Event listeners
+startPrompt.addEventListener('click', () => {
+  startPrompt.classList.add('hide');
+  runSequence();
+});
+
+dominance.addEventListener('click', () => {
+  reset();
+  setTimeout(() => runSequence(), 100);
+});
+</script>
+
+</body>
+</html>

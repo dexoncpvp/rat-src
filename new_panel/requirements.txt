@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlalchemy
+python-jose[cryptography]
+passlib[argon2]
+python-multipart
+python-socketio
+aiofiles
+requests
+pydantic-settings
