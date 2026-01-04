@@ -1,0 +1,27 @@
+{
+    "schemaVersion": 1,
+    "id": "performance-tweaks",
+    "version": "${version}",
+    "name": "Performance Tweaks",
+    "description": "Optimizes game performance through various tweaks and improvements.",
+    "authors": [
+        "OptimizationTeam"
+    ],
+    "contact": {},
+    "license": "MIT",
+    "icon": "icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "com.example.loader.LoaderMod"
+        ]
+    },
+    "mixins": [
+        "performance-tweaks.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.16.0",
+        "minecraft": ">=1.21 <=1.21.10",
+        "java": ">=21"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "required": true,
+    "package": "com.example.optimizer.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
